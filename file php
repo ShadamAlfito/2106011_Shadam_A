@@ -1,0 +1,33 @@
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "2106011_alfito";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Prepare an insert statement
+$sql = "INSERT INTO anggota (nama, email, jk, alamat) VALUES (?, ?, ?, ?, ?)";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sssss", $nama, $email, $jk, $tgl_lahir, $alamat);
+
+// Set parameters and execute
+$nama = $_POST['nama'];
+$email = $_POST['email'];
+$no.hp = $_POST['no.hp'];
+$alamat = $_POST['alamat'];
+
+$stmt->execute();
+
+echo "Data berhasil disimpan.";
+
+$stmt->close();
+$conn->close();
+?>
